@@ -55,7 +55,7 @@
                         </div>
                     </form>
                     <hr class="mt-4">
-                    <p class="fs-14">Belum punya akun ?<a href="#" class="ml-2">Daftar sekarang</a></p>
+                    <p class="fs-14">Belum punya akun ?<a href="{{ route('register') }}" class="ml-2">Daftar sekarang</a></p>
                 </div>
             </div>
         </div>

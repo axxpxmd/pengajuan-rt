@@ -45,6 +45,7 @@
 
     <!-- Script -->
     @yield('script')
+    @stack('script')
     <script type="text/javascript">
         var APP_URL = {!! json_encode(url('/').'/') !!}
     </script>

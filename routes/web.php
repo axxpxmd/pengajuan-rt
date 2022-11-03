@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,14 @@ use App\Http\Controllers\LoginController;
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 
+Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
+Route::post('/register/check-nik', [RegisterController::class, 'checkNIK'])->name('register.checkNIK')->middleware('guest');
+Route::get('/register/verification/{nik}', [RegisterController::class, 'verification'])->name('register.verification')->middleware('guest');
+Route::post('/register/send-otp/{nik}', [RegisterController::class, 'sendOTP'])->name('register.sendOTP')->middleware('guest');
+Route::get('/register/activation/{nik}/{no_hp}', [RegisterController::class, 'activation'])->name('register.activation')->middleware('guest');
+Route::post('/register/create', [RegisterController::class, 'register'])->name('register.create')->middleware('guest');
+Route::get('/register/resend-otp/{nik}/{no_hp}', [RegisterController::class, 'resendOTP'])->name('register.resendOTP')->middleware('guest');
+
 // Beranda
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
