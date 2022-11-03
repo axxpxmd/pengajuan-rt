@@ -127,6 +127,30 @@ class RegisterController extends Controller
             ->withSuccess('Kode OTP berhasil terkirim.');
     }
 
+    public function changeNoHP(Request $request, $nik)
+    {
+        /**
+         * Tahapan 
+         * 1. user_pengajuan (update)
+         * 2. Send OTP
+         */
+
+        $no_hp = $request->no_hp;
+        $kode  = mt_rand(1000, 9999);
+
+        //* Tahap 1
+        $user = User::where('nik', $nik)->update([
+            'no_telp' => $no_hp
+        ]);
+
+        //* Tahap 2
+        $this->sendOTP->sendOTP($kode, $no_hp);
+
+        return redirect()
+            ->route('register.activation', ['nik' => $nik, 'no_hp' => $no_hp])
+            ->withSuccess('Nomor HP berhasil diperbaharui.');
+    }
+
     public static function updateKode($nik, $kode)
     {
         User::where('nik', $nik)->update([

@@ -22,7 +22,14 @@
         @include('layouts.alert')
         <div class="alert alert-warning fs-14 text-center" role="alert">
             <p class="m-0">Kode OTP telah dikirimkan ke nomor <b>{{ $no_hp }}</b> (Whatsapp)</p>
-            <a href="{{ route('register.resendOTP', ['nik' => $nik, 'no_hp' => $no_hp]) }}">Kirim Ulang</a>   
+            <div class="row justify-content-center mt-2">
+                <div class="col-sm-auto">
+                    <a href="{{ route('register.resendOTP', ['nik' => $nik, 'no_hp' => $no_hp]) }}">Kirim Ulang ?</a>  
+                </div>
+                <div class="col-sm-auto">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Ganti Nomor</a> 
+                </div>
+            </div>
         </div>
         <div class="card mt-4">
             <div class="card-body">
@@ -58,7 +65,7 @@
                 <img class="img-fluid" src="{{ asset('images/auth/login.png') }}" alt="login">
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                  <div class="card bg-light m-b-100 m-t-49">
+                <div class="card bg-light m-b-100 m-t-49">
                     <div class="card-body">
                         <div class="fs-14 text-center">
                             <p>Selamat, Akun anda sudah aktif. Silahkan <a href="{{ route('login') }}">Login</a></p>
@@ -70,6 +77,34 @@
     </div>
     @endif
 </section>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <p class="modal-title text-white fs-16 fw-bold" id="exampleModalLabel">Ganti No HP</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation fs-14" novalidate method="POST" action="{{ route('register.changeNoHP', $nik) }}">
+                    @csrf
+                    <input type="hidden" name="nik" value="{{ $nik }}">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-whatsapp"></i></span>
+                        <input type="number" class="form-control fs-15 @if ($errors->has('no_hp')) is-invalid @endif" name="no_hp" placeholder="No HP (Whatsapp)" autocomplete="off" autofocus required>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-success btn-block btn-lg fs-14"><i class="bi bi-arrow-right m-r-5"></i>Ganti</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger btn-block fs-14" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x m-r-5"></i>Batalkan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
 @include('layouts.loading')
 @endsection
 @push('script')

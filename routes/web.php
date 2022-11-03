@@ -28,6 +28,7 @@ Route::post('/register/send-otp/{nik}', [RegisterController::class, 'sendOTP'])-
 Route::get('/register/activation/{nik}/{no_hp}', [RegisterController::class, 'activation'])->name('register.activation')->middleware('guest');
 Route::post('/register/create', [RegisterController::class, 'register'])->name('register.create')->middleware('guest');
 Route::get('/register/resend-otp/{nik}/{no_hp}', [RegisterController::class, 'resendOTP'])->name('register.resendOTP')->middleware('guest');
+Route::post('/register/change-no-hp/{nik}', [RegisterController::class, 'changeNoHP'])->name('register.changeNoHP')->middleware('guest');
 
 // Beranda
 Route::get('/', [HomeController::class, 'index'])->name('home');
