@@ -31,6 +31,15 @@ class RegisterController extends Controller
 
         $nik = $request->nik;
 
+        //* Check User
+        $user = User::where('nik', $nik)->first();
+        if ($user->password != null) {
+            $validator->errors()->add('nik', 'Akun sudah terdaftar, Silahkan login.');
+            return redirect('/register')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         //* Check NIK
         $anggota = Anggota::where('nik', $nik)->first();
         if (!$anggota) {
