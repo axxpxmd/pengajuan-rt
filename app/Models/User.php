@@ -13,4 +13,9 @@ class User extends Authenticatable
 
     protected $table = 'user_pengajuan';
     protected $guarded = [];
+
+    public function anggota()
+    {
+        return $this->belongsTo(Anggota::class, 'nik', 'nik');
+    }
 }

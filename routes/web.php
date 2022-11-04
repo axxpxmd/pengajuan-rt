@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -33,3 +34,12 @@ Route::post('/register/change-no-hp/{nik}', [RegisterController::class, 'changeN
 // Beranda
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Middleware Auth
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    // Profile
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    
+});

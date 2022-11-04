@@ -54,12 +54,18 @@ class LoginController extends Controller
         $data = User::where('nik', $nik)->wherepassword(md5($request->password))->first();
         if ($data) {
             Auth::login($user, $request->remember);
-            return redirect(route('dashboard'));
+            return redirect(route('profile'));
         } else {
             $validator->errors()->add('nik', 'Password yang dimasukan salah.');
             return redirect('/login')
                 ->withErrors($validator)
                 ->withInput();
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }
