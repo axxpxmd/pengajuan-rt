@@ -41,8 +41,7 @@
                         <span class="input-group-text"><i class="bi bi-shield-fill-check"></i></span>
                         <input type="number" class="form-control fs-15 @if ($errors->has('no_hp')) is-invalid @endif" name="kode" placeholder="Kode OTP" autocomplete="off" autofocus required>
                     </div>
-                    <hr>
-                    <p style="background: #F8F8F8" class="p-2 rounded fs-14 text-black">Buat Password</p>
+                    <p style="background: #F1F1F1" class="p-2 rounded fs-14 text-black">Buat Password</p>
                     <div class="input-group mb-2">
                         <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                         <input type="password" class="form-control fs-15 @if ($errors->has('password')) is-invalid @endif" name="password" id="password" placeholder="Password" autocomplete="off" required>
@@ -80,8 +79,8 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-info">
-                <p class="modal-title text-white fs-16 fw-bold" id="exampleModalLabel">Ganti No HP</p>
+            <div class="modal-header bg-primary1">
+                <p class="modal-title text-white fs-16 fw-bold" id="exampleModalLabel">Ganti Nomor</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

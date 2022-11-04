@@ -38,16 +38,20 @@ class LoginController extends Controller
 
         //* Check Status Akun
         $user = User::where('nik', $nik)->first();
-        if (!$user && $anggota) {
+        if (!$user) {
+            $validator->errors()->add('nik', 'Akun anda belum aktif, Silahkan register untuk mengaktifkan akun.');
+            return redirect('/login')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        if ($user->password == null) {
             $validator->errors()->add('nik', 'Akun anda belum aktif, Silahkan register untuk mengaktifkan akun.');
             return redirect('/login')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $data = User::where('nik', $nik)
-            ->wherepassword(md5($request->password))
-            ->first();
+        $data = User::where('nik', $nik)->wherepassword(md5($request->password))->first();
         if ($data) {
             Auth::login($user, $request->remember);
             return redirect(route('dashboard'));

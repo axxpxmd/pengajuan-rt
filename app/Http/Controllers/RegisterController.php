@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\sendOTP;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 // Models
-use App\Models\Anggota;
 use App\Models\User;
+use App\Models\Anggota;
 
 class RegisterController extends Controller
 {
@@ -33,7 +33,7 @@ class RegisterController extends Controller
 
         //* Check User
         $user = User::where('nik', $nik)->first();
-        if ($user->password != null) {
+        if ($user ? $user->password : null != null) {
             $validator->errors()->add('nik', 'Akun sudah terdaftar, Silahkan login.');
             return redirect('/register')
                 ->withErrors($validator)
@@ -43,7 +43,7 @@ class RegisterController extends Controller
         //* Check NIK
         $anggota = Anggota::where('nik', $nik)->first();
         if (!$anggota) {
-            $validator->errors()->add('nik', 'NIK belum terdaftar, Silahkan hubungi RT setempat.');
+            $validator->errors()->add('nik', 'NIK belum terdata, Silahkan hubungi RT setempat.');
             return redirect('/register')
                 ->withErrors($validator)
                 ->withInput();
@@ -148,7 +148,7 @@ class RegisterController extends Controller
         $kode  = mt_rand(1000, 9999);
 
         //* Tahap 1
-        $user = User::where('nik', $nik)->update([
+        User::where('nik', $nik)->update([
             'no_telp' => $no_hp
         ]);
 
@@ -178,18 +178,12 @@ class RegisterController extends Controller
             'confirm_password.min' => 'Konfirmasi Password minimal berisi 8 karakter.'
         ]);
 
-        /**
-         * Tahapan
-         * 1. Check OTP
-         * 2. user_pengajuan (store)
-         */
-
         $no_hp = $request->no_hp;
         $nik   = $request->nik;
         $kode  = $request->kode;
         $password = $request->password;
 
-        //* Tahap 1
+        //* Check OTP
         $user = User::where('nik', $nik)->first();
         if ($user->kode != $kode) {
             return redirect()
@@ -198,17 +192,21 @@ class RegisterController extends Controller
                 ->withInput();
         }
 
-        //* Tahap 2
-        $user->update([
-            'password' => \md5($password)
-        ]);
-
-        if ($validator) {
+        if ($validator->fails()) {
             return redirect()
                 ->route('register.activation', ['nik' => $nik, 'no_hp' => $no_hp])
                 ->withErrors($validator)
                 ->withInput();
         } else {
+            //* Store password
+            $user->update([
+                'password' => \md5($password)
+            ]);
+
+            //* Set null kode
+            $kode = null;
+            $this->updateKode($nik, $kode);
+
             return redirect()
                 ->route('register.activation', ['nik' => $nik, 'no_hp' => $no_hp]);
         }
