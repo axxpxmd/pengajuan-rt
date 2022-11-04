@@ -21,9 +21,11 @@
         @include('layouts.alert')
         <div class="row justify-content-md-center" data-aos="fade-up" data-aos-delay="300">
             <div class="col-md-12">
-                <img src="{{ asset('images/ava/default.png') }}" class="img-fluid rounded-circle mx-auto d-block" width="100" alt="">
+                <div class="text-center">
+                    <img src="{{ asset('images/ava/default.png') }}" class="img-fluid rounded-circle mx-auto d-block mb-4" width="100" alt="">
+                </div>
                 <div class="text-center mt-2">
-                    <p class="font-weight-bold fs-20">{{ $data->anggota->nama }} <i class="bi bi-patch-check-fill text-primary1 ml-1"></i> </p>
+                    <p class="font-weight-bold fs-20">{{ $data->anggota->nama }} </p>
                 </div>  
                 <div class="card">
                     <h5 class="card-header bg-info text-white fs-16 px-3 py-3 fw-bold">Biodata</h5>
@@ -129,6 +131,12 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    
+    // get Umur
+    var tgl_lahir = new Date("{{ $anggota->tgl_lahir }}");  
+    var diff_ms = Date.now() - tgl_lahir.getTime();
+    var age_dt = new Date(diff_ms); 
+    var age = Math.abs(age_dt.getUTCFullYear() - 1970);
+    var ageResult = isNaN(age) === false ? age + ' Tahun' : '. . .' 
+    $('#umur').html('Umur : ' + ageResult);
 </script>
 @endsection

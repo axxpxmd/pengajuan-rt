@@ -16,6 +16,20 @@
     margin-top: 100px !important;
 }
 
+@media (max-width: 768px) {
+    .img-dynamic{
+        display: none;
+    } 
+
+    .mb-5-m {
+        margin-bottom: 8px;
+    }
+
+    .text-end{
+        text-align: left !important;
+    }
+}  
+
 @media screen and (max-width: 767px) {
     .top-div {
         margin-top: 0px !important;
@@ -290,4 +304,33 @@
 
 .bg-primary1{
     background:#3498DB;
+}
+
+.text-set {
+    background-color: #F6F8FC !important;
+    color: white !important;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #EEEEEE;
+}
+
+table.data-table {
+    font-size: 14px !important;
+}
+
+.dataTables_length label,
+.dataTables_filter label {
+    font-size: 14px !important;
+}
+
+.dt-buttons,
+.dataTables_info {
+    font-size: 14px !important;
+}
+
+.dataTables_paginate  {
+   font-size: 14px !important;
+}
+
+#dataTable_previous, #dataTable_next{
+    margin: 0 !important;
 }

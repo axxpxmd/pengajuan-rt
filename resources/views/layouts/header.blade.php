@@ -9,7 +9,7 @@
                 @guest
                 <li><a class="getstarted scrollto" href="{{ url('/login') }}"><i class="bi bi-arrow-right m-r-5"></i>Login</a></li>
                 @else
-                <li><a class="nav-link scrollto" href="{{ url()->current() == url('/') ? '#hero' : url('/') }}">Pengajuan</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('pengajuan') }}">Pengajuan</a></li>
                 <li class="dropdown"><a href="#"><span>Hello, <span class="font-weight-bold ml-1">{{ Auth::user()->anggota->nama }}</span></span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('profile') }}">Profile</a></li>
