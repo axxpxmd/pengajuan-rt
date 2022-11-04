@@ -50,5 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pengajuan/edit/{id}', [PengajuanController::class, 'edit'])->name('pengajuan.edit');
     Route::post('/pengajuan/update/{id}', [PengajuanController::class, 'update'])->name('pengajuan.update');
     Route::delete('/pengajuan/destroy/{id}', [PengajuanController::class, 'destroy'])->name('pengajuan.destroy');
+    Route::get('/pengajuan/destroy-perihal/{pengajuan_id}/{perihal_id}', [PengajuanController::class, 'destroyPerihal'])->name('pengajuan.destroyPerihal');
+    Route::get('/pengajuan/cetak/{id}', [PengajuanController::class, 'cetak'])->name('pengajuan.cetak');
     
 });

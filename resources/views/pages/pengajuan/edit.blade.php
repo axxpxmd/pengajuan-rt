@@ -66,6 +66,15 @@
                                 </div>
                             </div>
                         </form>
+                        <hr>
+                        <p style="background: #E6EAEE" class="p-2 rounded fs-14 text-black fw-bold">Hapus Perihal</p>
+                        <ol class="fs-14">
+                            @foreach ($perihals as $i)
+                                <li class="mt-1">{{ $i->perihal }} 
+                                    <a href="{{ route('pengajuan.destroyPerihal', ['pengajuan_id'=>$data->id, 'perihal_id'=>$i->id]) }}" class="ml-2 text-danger"><i class="bi bi-trash-fill"></i></a>
+                                </li>
+                            @endforeach
+                        </ol>
                     </div>
                 </div>
             </div>

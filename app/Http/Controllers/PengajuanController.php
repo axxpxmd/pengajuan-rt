@@ -124,4 +124,25 @@ class PengajuanController extends Controller
 
         return response()->json(['message' => "Data berhasil dihapus."]);
     }
+
+    public function destroyPerihal($pengajuan_id, $perihal_id)
+    {
+        $perihal = PerihalPengajuan::where('pengajuan_id', $pengajuan_id)->count();
+        if ($perihal == 1) {
+            return redirect()
+                ->route('pengajuan.edit', $pengajuan_id)
+                ->withErrors('Harus terdapat minimal 1 perihal.');
+        }else{
+            PerihalPengajuan::destroy($perihal_id);
+        }
+
+        return redirect()
+            ->route('pengajuan.edit', $pengajuan_id)
+            ->withSuccess('Data berhasil diperbarui.');
+    }
+
+    public function cetak($id)
+    {
+        dd($id);
+    }
 }
