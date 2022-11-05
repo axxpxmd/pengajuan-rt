@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '| Profile')
+@section('title', '| Pengajuan')
 @section('content')
 @php
     $ya = '<span class="badge bg-success">Ya</span>';

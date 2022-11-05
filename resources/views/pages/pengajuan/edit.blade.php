@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '| Profile')
+@section('title', '| Pengajuan')
 @section('content')
 @php
     $ya = '<span class="badge bg-success">Ya</span>';
@@ -53,7 +53,7 @@
                                         </div>
                                         @if($key == 0)
                                         <div class="col-sm-1">
-                                            <button type="button" class="btn btn-sm btn-primary m-t-12" id="add-pengajuan"><i class="bi bi-plus"></i></button>
+                                            <button type="button" class="btn btn-sm btn-primary m-t-12" id="add-pengajuan" title="Tambah Kolom"><i class="bi bi-plus"></i></button>
                                         </div>
                                         @endif
                                     </div>
@@ -71,7 +71,7 @@
                         <ol class="fs-14">
                             @foreach ($perihals as $i)
                                 <li class="mt-1">{{ $i->perihal }} 
-                                    <a href="{{ route('pengajuan.destroyPerihal', ['pengajuan_id'=>$data->id, 'perihal_id'=>$i->id]) }}" class="ml-2 text-danger"><i class="bi bi-trash-fill"></i></a>
+                                    <a href="{{ route('pengajuan.destroyPerihal', ['pengajuan_id'=>$data->id, 'perihal_id'=>$i->id]) }}" class="ml-2 text-danger" title="Hapus Data"><i class="bi bi-trash-fill"></i></a>
                                 </li>
                             @endforeach
                         </ol>

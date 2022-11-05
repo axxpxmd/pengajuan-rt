@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '| Profile')
+@section('title', '| Pengajuan')
 @section('content')
 @php
     $ya = '<span class="badge bg-success">Ya</span>';
@@ -31,8 +31,9 @@
                                 <thead>
                                     <tr>
                                         <th width="10%" class="text-center">No</th>
-                                        <th width="60%">Tanggal Pengajuan</th>
+                                        <th width="50%">Tanggal Pengajuan</th>
                                         <th width="10%">Status</th>
+                                        <th width="10%">Jumlah Perihal</th>
                                         <th width="10%">Cetak</th>
                                         <th width="10%" class="text-center">Aksi</th>
                                     </tr>
@@ -43,11 +44,12 @@
                                             <td class="text-center">{{ $key+1 }}</td>
                                             <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $i->tgl_pengajuan)->format('d F Y') }}</td>
                                             <td>{{ $i->status }}</td>
+                                            <td class="text-center">{{ $i->status }}</td>
                                             <td class="text-center">
                                                 <a href="#" class="text-info"><i class="bi bi-printer"></i></a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-warning m-r-8"><i class="bi bi-pencil-fill"></i></a>
+                                                <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-primary m-r-8"><i class="bi bi-pencil-fill"></i></a>
                                                 <a href="#" onclick="remove({{ $i->id }})" class="text-danger"><i class="bi bi-trash-fill"></i></a>
                                             </td>
                                         </tr>
