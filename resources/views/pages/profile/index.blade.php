@@ -24,7 +24,7 @@
                     <p class="font-weight-bold fs-20">{{ $data->anggota->nama }} </p>
                 </div>  
                 <div class="card">
-                    <h5 class="card-header bg-info text-white fs-16 px-3 py-3 fw-bold">Biodata</h5>
+                    <div class="card-header bg-info text-white fs-16 fw-bold">Data Diri</div>
                     <div class="card-body fs-14">
                         <div class="row">
                             <div class="col-sm-6">
