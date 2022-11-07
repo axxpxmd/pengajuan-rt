@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('title', '| Pengajuan')
 @section('content')
-@php
-    $ya = '<span class="badge bg-success">Ya</span>';
-    $tidak = '<span class="badge bg-danger">Tidak</span>';
-@endphp
 <section class="breadcrumbs">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
@@ -49,7 +45,7 @@
                                                 <a href="#" class="text-info"><i class="bi bi-printer"></i></a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-primary m-r-8"><i class="bi bi-pencil-fill"></i></a>
+                                                <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-warning m-r-8"><i class="bi bi-pencil-fill"></i></a>
                                                 <a href="#" onclick="remove({{ $i->id }})" class="text-danger"><i class="bi bi-trash-fill"></i></a>
                                             </td>
                                         </tr>
@@ -75,7 +71,7 @@
     function remove(id){
         $.confirm({
             title: 'Konfirmasi',
-            content: 'Apakah Anda yakin ingin menghapus data ini ?',
+            content: 'Apakah anda yakin ingin menghapus data ini ?',
             icon: 'bi bi-question text-danger',
             theme: 'modern',
             closeIcon: true,

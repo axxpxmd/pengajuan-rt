@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-4">
+        <div class="card mt-4 shadow-sm p-2">
             <div class="card-body">
                 <form class="needs-validation fs-14" novalidate method="POST" action="{{ route('register.create') }}">
                     @csrf
@@ -46,7 +46,7 @@
                         <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                         <input type="password" class="form-control fs-15 @if ($errors->has('password')) is-invalid @endif" name="password" id="password" placeholder="Password" autocomplete="off" required>
                     </div>
-                    <div class="input-group mb-2">
+                    <div class="input-group mb-3">
                         <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                         <input type="password" class="form-control fs-15 @if ($errors->has('confirm_password')) is-invalid @endif" name="confirm_password" id="confirm_password" placeholder="Konfirmasi Password" autocomplete="off" required>
                     </div>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-sm-6">
-                            <button type="submit" class="btn btn-success btn-block btn-lg fs-14"><i class="bi bi-arrow-right m-r-5"></i>Ganti</button>
+                            <button type="submit" class="btn btn-success btn-block fs-14"><i class="bi bi-arrow-right m-r-5"></i>Ganti</button>
                         </div>
                         <div class="col-sm-6">
                             <button type="button" class="btn btn-danger btn-block fs-14" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x m-r-5"></i>Batalkan</button>

@@ -21,7 +21,7 @@
         <div class="row justify-content-md-center" data-aos="fade-up" data-aos-delay="300">
             <div class="col-md-8 m-b-190">
                 @include('layouts.alert')
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-header bg-info text-white fs-16 fw-bold">Edit Data</div>
                     <div class="card-body">
                         <a href="{{ route('pengajuan') }}" class="fs-14 text-danger fw-bold m-r-10"><i class="bi bi-arrow-left m-r-8"></i>Kembali</a>
@@ -45,11 +45,11 @@
                                     <div class="row mb-2">
                                         <label for="keperluan" class="col-sm-4 col-form-label text-end fw-bold">
                                             @if($key == 0)
-                                            Keperluan <span class="text-danger"> *</span>
+                                            Perihal <span class="text-danger"> *</span>
                                             @endif
                                         </label>
                                         <div class="col-sm-7">
-                                            <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihan yang disampaikan" class="form-control fs-14" autocomplete="off" required>{{ $i->perihal }}</textarea>
+                                            <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal yang disampaikan" class="form-control fs-14" autocomplete="off" required>{{ $i->perihal }}</textarea>
                                         </div>
                                         @if($key == 0)
                                         <div class="col-sm-1">
@@ -90,7 +90,7 @@
             <div class="tambahan row mb-2">
                 <label for="keperluan" class="col-sm-4 col-form-label text-end fw-bold"></label>
                 <div class="col-sm-7">
-                    <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihan yang disampaikan" class="form-control fs-14" autocomplete="off" required></textarea>
+                    <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal yang disampaikan" class="form-control fs-14" autocomplete="off" required></textarea>
                 </div>
                 <div class="col-sm-1">
                     <button type="button" class="btn btn-sm btn-danger remove-input-field m-t-12"><i class="bi bi-trash-fill"></i></button>

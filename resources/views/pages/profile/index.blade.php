@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('title', '| Profile')
 @section('content')
-@php
-    $ya = '<span class="badge bg-success">Ya</span>';
-    $tidak = '<span class="badge bg-danger">Tidak</span>';
-@endphp
 <section class="breadcrumbs">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
@@ -58,9 +54,9 @@
                                     <label class="col-sm-4 col-form-label fw-bold">Terdaftar Dukcapil</label>
                                     <label class="col-sm-8 col-form-label">
                                         @if ($anggota->anggotaDetail->terdaftar_dukcapil == 1)
-                                            {!! $ya !!}
+                                            Ya
                                         @else
-                                            {!! $tidak !!}
+                                            Tidak
                                         @endif
                                     </label>
                                 </div>
