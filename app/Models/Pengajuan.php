@@ -11,4 +11,9 @@ class Pengajuan extends Model
 
     protected $table = 'pengajuans';
     protected $guarded = [];
+
+    public function perihal()
+    {
+        return $this->hasMany(PerihalPengajuan::class, 'pengajuan_id');
+    }
 }

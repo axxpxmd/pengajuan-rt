@@ -43,14 +43,14 @@ class PengajuanController extends Controller
          */
 
         //* Tahap 1
-        $dataPengajua = [
+        $dataPengajuan = [
             'nik' => Auth::user()->nik,
             'tgl_surat' => $request->tgl_surat,
             'tgl_pengajuan' => $request->tgl_pengajuan,
             'status' => 0,
             'no_surat' => 0
         ];
-        $pengajuan = Pengajuan::create($dataPengajua);
+        $pengajuan = Pengajuan::create($dataPengajuan);
 
         //* Tahap 2
         $totalPerihal = \count($request->keperluan);
@@ -94,11 +94,11 @@ class PengajuanController extends Controller
          */
 
         //* Tahap 1
-        $dataPengajuan = [
+        $dataPengajuann = [
             'tgl_surat' => $request->tgl_surat,
             'tgl_pengajuan' => $request->tgl_pengajuan
         ];
-        Pengajuan::where('id', $id)->update($dataPengajuan);
+        Pengajuan::where('id', $id)->update($dataPengajuann);
 
         //* Tahap 2
         PerihalPengajuan::where('pengajuan_id', $id)->delete();
@@ -143,6 +143,20 @@ class PengajuanController extends Controller
 
     public function cetak($id)
     {
-        dd($id);
+        $anggota = Anggota::find($id);
+        $anggota_detail = AnggotaDetail::where('anggota_id', $id)->first();
+
+        $umur = Carbon::parse($anggota->tgl_lahir)->age;
+
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->setPaper('legal', 'portrait');
+        $pdf->loadView('pages.cetak.dataWarga', compact(
+            'anggota',
+            'anggota_detail',
+            'umur'
+        ));
+
+        return $pdf->stream($anggota->nama . ' ( Data Warga )' . ".pdf");
     }
 }

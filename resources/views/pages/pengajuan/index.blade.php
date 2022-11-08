@@ -40,9 +40,9 @@
                                             <td class="text-center">{{ $key+1 }}</td>
                                             <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $i->tgl_pengajuan)->format('d F Y') }}</td>
                                             <td>{{ $i->status }}</td>
-                                            <td class="text-center">{{ $i->status }}</td>
+                                            <td class="text-center">{{ $i->perihal->count() }}</td>
                                             <td class="text-center">
-                                                <a href="#" class="text-info"><i class="bi bi-printer"></i></a>
+                                                <a href="{{ route('pengajuan.cetak', $i->id) }}" class="text-info"><i class="bi bi-printer"></i></a>
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-warning m-r-8"><i class="bi bi-pencil-fill"></i></a>
