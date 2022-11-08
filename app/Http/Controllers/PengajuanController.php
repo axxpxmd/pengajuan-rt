@@ -132,7 +132,7 @@ class PengajuanController extends Controller
             return redirect()
                 ->route('pengajuan.edit', $pengajuan_id)
                 ->withErrors('Harus terdapat minimal 1 perihal.');
-        }else{
+        } else {
             PerihalPengajuan::destroy($perihal_id);
         }
 
@@ -143,20 +143,15 @@ class PengajuanController extends Controller
 
     public function cetak($id)
     {
-        $anggota = Anggota::find($id);
-        $anggota_detail = AnggotaDetail::where('anggota_id', $id)->first();
-
-        $umur = Carbon::parse($anggota->tgl_lahir)->age;
+        $data = Pengajuan::find($id);
 
         $pdf = app('dompdf.wrapper');
         $pdf->getDomPDF()->set_option("enable_php", true);
         $pdf->setPaper('legal', 'portrait');
-        $pdf->loadView('pages.cetak.dataWarga', compact(
-            'anggota',
-            'anggota_detail',
-            'umur'
+        $pdf->loadView('pages.pengajuan.surat', compact(
+            'data'
         ));
 
-        return $pdf->stream($anggota->nama . ' ( Data Warga )' . ".pdf");
+        return $pdf->stream($data->anggota->nama . ' ( ' . $data->tgl_pengajuan . ' ) ' . ".pdf");
     }
 }

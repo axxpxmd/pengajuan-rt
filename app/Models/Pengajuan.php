@@ -16,4 +16,14 @@ class Pengajuan extends Model
     {
         return $this->hasMany(PerihalPengajuan::class, 'pengajuan_id');
     }
+
+    public function anggota()
+    {
+        return $this->belongsTo(Anggota::class, 'nik', 'nik');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'nik', 'nik');
+    }
 }

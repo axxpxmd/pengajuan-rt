@@ -127,4 +127,14 @@ class RTRW extends Model
 
         return $data->orderBy('id', 'ASC')->get();
     }
+
+    public function nKetuaRT()
+    {
+        return $this->belongsTo(MappingRT::class, 'ketua_rt', 'id');
+    }
+
+    public function nKetuaRW()
+    {
+        return $this->belongsTo(MappingRW::class, 'ketua_rw', 'id');
+    }
 }
