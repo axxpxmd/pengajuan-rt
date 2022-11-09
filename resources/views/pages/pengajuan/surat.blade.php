@@ -123,7 +123,7 @@
                         <p class="m-n">Mengetahui,</p>
                         <p class="m-n fs-14">KETUA RW {{ $data->anggota->rtrw->rw }}</p>
                         <p class="m-n fs-14 text-uppercase">KELURAHAN {{ $data->anggota->rtrw->n_kelurahan }}</p>
-                        <div class="m-t-80">
+                        <div class="m-t-90">
                             <u class="m-n">{{ $data->anggota->rtrw->nKetuaRT->ketua }}</u>
                             <p class="m-n">NIK. {{ $data->anggota->rtrw->nKetuaRT->nik }}</p>
                         </div>
@@ -135,7 +135,7 @@
                             <p class="m-n fs-14">KETUA RT {{ $data->anggota->rtrw->rt }} / KETUA RW {{ $data->anggota->rtrw->rw }}</p>
                             <p class="m-n fs-14 text-uppercase">KELURAHAN {{ $data->anggota->rtrw->n_kelurahan }}</p>
                         </div>
-                        <div class="m-t-80">
+                        <div class="m-t-90">
                             <u class="m-n">{{ $data->anggota->rtrw->nKetuaRW->ketua }}</u>
                             <p class="m-n">NIK. {{ $data->anggota->rtrw->nKetuaRW->nik }}</p>
                         </div>
