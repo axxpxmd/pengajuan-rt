@@ -39,14 +39,21 @@
                                         <tr>
                                             <td class="text-center">{{ $key+1 }}</td>
                                             <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $i->tgl_pengajuan)->format('d F Y') }}</td>
-                                            <td>{{ $i->status }}</td>
+                                            <td>
+                                                @include('pages.pengajuan.status')
+                                            </td>
                                             <td class="text-center">{{ $i->perihal->count() }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('pengajuan.cetak', $i->id) }}" target="_blank" class="text-info"><i class="bi bi-printer"></i></a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-warning m-r-8"><i class="bi bi-pencil-fill"></i></a>
-                                                <a href="#" onclick="remove({{ $i->id }})" class="text-danger"><i class="bi bi-trash-fill"></i></a>
+                                                @if ($i->status == 0 || $i->status == 2 || $i->status == 5)
+                                                    <a href="{{ route('pengajuan.kirimSurat', $i->id) }}" class="text-success m-r-10" title="Kirim Surat"><i class="bi bi-arrow-right-circle-fill"></i></a>
+                                                    <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-warning m-r-8"><i class="bi bi-pencil-fill"></i></a>
+                                                    <a href="#" onclick="remove({{ $i->id }})" class="text-danger"><i class="bi bi-trash-fill"></i></a>
+                                                @else
+                                                    <span>-</span>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

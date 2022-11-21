@@ -154,4 +154,16 @@ class PengajuanController extends Controller
 
         return $pdf->stream($data->anggota->nama . ' ( ' . $data->tgl_pengajuan . ' ) ' . ".pdf");
     }
+
+    public function kirimSurat($id)
+    {
+        $data = Pengajuan::find($id);
+        $data->update([
+            'status' => 1
+        ]);
+
+        return redirect()
+            ->route('pengajuan')
+            ->withSuccess('Surat berhasil dikirim, Cek email secara berkala untuk mengetahui status surat.');
+    }
 }

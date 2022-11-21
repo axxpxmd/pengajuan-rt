@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'user_pengajuan';
+    protected $table = 'user_pengajuans';
     protected $guarded = [];
 
     public function anggota()
