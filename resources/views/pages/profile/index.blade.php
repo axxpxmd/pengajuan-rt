@@ -120,6 +120,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="text-center mt-4">
+                    <a href="{{ route('pengajuan') }}" class="btn btn-sm btn-primary fs-14"><i class="bi bi-plus-circle m-r-8"></i> Buat Pengajuan</a>
+                </div>
             </div>
         </div>
     </div>

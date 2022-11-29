@@ -20,47 +20,45 @@
                 <div class="mb-3 text-right">
                     <a href="{{ route('pengajuan.create') }}" class="btn btn-sm btn-success px-2"><i class="bi bi-plus font-weight-bold fs-16 m-r-5"></i>Tambah Data</a>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example" class="table data-table display nowrap table-hover table-bordered fs-14" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th width="10%" class="text-center">No</th>
-                                        <th width="50%">Tanggal Pengajuan</th>
-                                        <th width="10%">Status</th>
-                                        <th width="10%">Jumlah Perihal</th>
-                                        <th width="10%">Cetak</th>
-                                        <th width="10%" class="text-center">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($pengajuans as $key => $i)
-                                        <tr>
-                                            <td class="text-center">{{ $key+1 }}</td>
-                                            <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $i->tgl_pengajuan)->format('d F Y') }}</td>
-                                            <td>
-                                                @include('pages.pengajuan.status')
-                                            </td>
-                                            <td class="text-center">{{ $i->perihal->count() }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('pengajuan.cetak', $i->id) }}" target="_blank" class="text-info"><i class="bi bi-printer"></i></a>
-                                            </td>
-                                            <td class="text-center">
-                                                @if ($i->status == 0 || $i->status == 2 || $i->status == 5)
-                                                    <a href="{{ route('pengajuan.kirimSurat', $i->id) }}" class="text-success m-r-10" title="Kirim Surat"><i class="bi bi-arrow-right-circle-fill"></i></a>
-                                                    <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-warning m-r-8"><i class="bi bi-pencil-fill"></i></a>
-                                                    <a href="#" onclick="remove({{ $i->id }})" class="text-danger"><i class="bi bi-trash-fill"></i></a>
-                                                @else
-                                                    <span>-</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="table-responsive">
+                    <table id="example" class="table data-table display nowrap table-hover table-bordered fs-14" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th width="10%" class="text-center">No</th>
+                                <th width="30%">No Surat</th>
+                                <th width="20%">Tanggal Pengajuan</th>
+                                <th width="10%">Status</th>
+                                <th width="10%">Jumlah Perihal</th>
+                                <th width="10%">Cetak</th>
+                                <th width="10%" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pengajuans as $key => $i)
+                                <tr>
+                                    <td class="text-center">{{ $key+1 }}</td>
+                                    <td>{{ $i->no_surat }}</td>
+                                    <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $i->tgl_pengajuan)->format('d F Y') }}</td>
+                                    <td>
+                                        @include('pages.pengajuan.status')
+                                    </td>
+                                    <td class="text-center">{{ $i->perihal->count() }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('pengajuan.cetak', $i->id) }}" target="_blank" class="text-primary1 fs-16"><i class="bi bi-printer"></i></a>
+                                    </td>
+                                    <td class="text-center">
+                                        @if ($i->status == 0 || $i->status == 2 || $i->status == 5)
+                                            <a href="{{ route('pengajuan.kirimSurat', $i->id) }}" class="text-success1 fs-16 m-r-15" title="Kirim Surat"><i class="bi bi-arrow-right-circle-fill"></i></a>
+                                            <a href="{{ route('pengajuan.edit', $i->id) }}" class="text-warning fs-16 m-r-15" title="Edit Surat"><i class="bi bi-pencil-fill"></i></a>
+                                            <a href="#" onclick="remove({{ $i->id }})" class="text-danger fs-16" title="Hapus Surat"><i class="bi bi-trash-fill"></i></a>
+                                        @else
+                                            <span>-</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
