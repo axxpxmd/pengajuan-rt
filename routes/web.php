@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ValidasiSuratController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pengajuan/kirim-surat/{id}', [PengajuanController::class, 'kirimSurat'])->name('pengajuan.kirimSurat');
     
 });
+
+Route::get('/validasi/surat-rt/{id}', [ValidasiSuratController::class, 'validasiRT'])->name('validasiRT');
+Route::get('/validasi/surat-rw/{id}', [ValidasiSuratController::class, 'validasiRW'])->name('validasiRW');

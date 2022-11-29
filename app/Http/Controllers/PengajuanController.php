@@ -145,11 +145,23 @@ class PengajuanController extends Controller
     {
         $data = Pengajuan::find($id);
 
+         // QR Code RT
+         $file_url = route('validasiRT', $id);
+         $b   = base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->merge(public_path('images/logo-png.png'), 0.2, true)->size(900)->errorCorrection('H')->margin(0)->generate($file_url));
+         $qrRT = '<img width="60" height="61" src="data:image/png;base64, ' . $b . '" alt="qr code" />';
+ 
+         // QR Code RW
+         $file_url = route('validasiRW', $id);
+         $b   = base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->merge(public_path('images/logo-png.png'), 0.2, true)->size(900)->errorCorrection('H')->margin(0)->generate($file_url));
+         $qrRW = '<img width="60" height="61" src="data:image/png;base64, ' . $b . '" alt="qr code" />';
+
         $pdf = app('dompdf.wrapper');
         $pdf->getDomPDF()->set_option("enable_php", true);
         $pdf->setPaper('legal', 'portrait');
         $pdf->loadView('pages.pengajuan.surat', compact(
-            'data'
+            'data',
+            'qrRT',
+            'qrRW'
         ));
 
         return $pdf->stream($data->anggota->nama . ' ( ' . $data->tgl_pengajuan . ' ) ' . ".pdf");
@@ -164,6 +176,6 @@ class PengajuanController extends Controller
 
         return redirect()
             ->route('pengajuan')
-            ->withSuccess('Surat berhasil dikirim, Cek email secara berkala untuk mengetahui status surat.');
+            ->withSuccess('Surat berhasil dikirim, Tunggu hingga pemberitahuan selanjutnya.');
     }
 }

@@ -14,6 +14,28 @@
         .m-n{
             margin-bottom: -2px !important
         }
+
+        table.d {
+            border-collapse: collapse;
+            width: 100%
+        } 
+
+        table.d tr.d,th.d,td.d{
+            table-layout: fixed;
+            border: 1px solid black;
+            font-size: 12px;
+            height: 100;
+        }
+
+        table.a tr.a,th.a,td.a{
+            table-layout: fixed;
+            border: 1px solid black;
+            font-size: 12px;
+        }
+
+        table.c{
+            font-size: 15px 
+        }
     </style>
 
 </head>
@@ -35,7 +57,7 @@
     </div>
     <div class="text-center mt-3">
         <u class="fs-18 font-weight-bolder">SURAT PENGANTAR</u>
-        <p class="fs-14">Nomor : 00001 / RT {{ $data->anggota->rtrw->rt }} / RW {{ $data->anggota->rtrw->rw }} / 2022</p>
+        <p class="fs-14">Nomor : {{ $data->no_surat }}</p>
     </div>
     <div class="mb-2">
         <p>Yang bertanda tangan  di bawah ini ketua RT {{ $data->anggota->rtrw->rt }} / RW {{ $data->anggota->rtrw->rw }} 
@@ -118,26 +140,52 @@
     <div class="mt-2">
         <table width="100%">
             <tr>
+                <!-- RW -->
                 <td class="text-center">
                     <div style="margin-right: 50px !important">
                         <p class="m-n">Mengetahui,</p>
                         <p class="m-n fs-14">KETUA RW {{ $data->anggota->rtrw->rw }}</p>
                         <p class="m-n fs-14 text-uppercase">KELURAHAN {{ $data->anggota->rtrw->n_kelurahan }}</p>
-                        <div class="m-t-90">
-                            <u class="m-n">{{ $data->anggota->rtrw->nKetuaRT->ketua }}</u>
-                            <p class="m-n">NIK. {{ $data->anggota->rtrw->nKetuaRT->nik }}</p>
+                        @if ($data->status == 6)
+                        <table class="m-t-20 m-l-18">
+                            <tr class="a">
+                                <td style="padding: 2px !important" width="8%" class="a"> {!! $qrRW !!}</td>
+                                <td style="padding: 2px !important" width="92%" class="a">
+                                    <p class="m-b-0 m-t-0 fs-10" style="font-style: italic">Telah ditandatangani secara elektronik oleh :</p>
+                                    <p class="m-t-0 m-b-0 fs-10 t-blue">{{ $data->anggota->rtrw->nKetuaRW->ketua }}</p>
+                                    <p class="m-t-0 m-b-0 fs-10">Menggunakan Sertifikat Elektronik.</p>
+                                </td>
+                            </tr>
+                        </table>
+                        @endif
+                        <div class="{{ $data->status == 6 ? 'm-t-20' : 'm-t-112' }}">
+                            <u class="m-n">{{ $data->anggota->rtrw->nKetuaRW->ketua }}</u>
+                            <p class="m-n">NIK. {{ $data->anggota->rtrw->nKetuaRW->nik }}</p>
                         </div>
                     </div>
                 </td>
+                <!-- RT -->
                 <td class="text-center">
                     <div style="margin-left: 50px !important">
                         <div style="margin-top: 20px !important">
                             <p class="m-n fs-14">KETUA RT {{ $data->anggota->rtrw->rt }} / KETUA RW {{ $data->anggota->rtrw->rw }}</p>
                             <p class="m-n fs-14 text-uppercase">KELURAHAN {{ $data->anggota->rtrw->n_kelurahan }}</p>
                         </div>
-                        <div class="m-t-90">
-                            <u class="m-n">{{ $data->anggota->rtrw->nKetuaRW->ketua }}</u>
-                            <p class="m-n">NIK. {{ $data->anggota->rtrw->nKetuaRW->nik }}</p>
+                        @if ($data->status >= 3)
+                        <table class="m-t-20 m-l-18">
+                            <tr class="a">
+                                <td style="padding: 2px !important" width="8%" class="a"> {!! $qrRT !!}</td>
+                                <td style="padding: 2px !important" width="92%" class="a">
+                                    <p class="m-b-0 m-t-0 fs-10" style="font-style: italic">Telah ditandatangani secara elektronik oleh :</p>
+                                    <p class="m-t-0 m-b-0 fs-10 t-blue">{{ $data->anggota->rtrw->nKetuaRT->ketua }}</p>
+                                    <p class="m-t-0 m-b-0 fs-10">Menggunakan Sertifikat Elektronik.</p>
+                                </td>
+                            </tr>
+                        </table>
+                        @endif
+                        <div class="{{ $data->status >= 3 ? 'm-t-20' : 'm-t-112' }}">
+                            <u class="m-n">{{ $data->anggota->rtrw->nKetuaRT->ketua }}</u>
+                            <p class="m-n">NIK. {{ $data->anggota->rtrw->nKetuaRT->nik }}</p>
                         </div>
                     </div>
                 </td>
