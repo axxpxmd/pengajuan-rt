@@ -22,12 +22,16 @@
         @include('layouts.alert')
         <div class="alert alert-warning fs-14 text-center" role="alert">
             <p class="m-0">Kode OTP telah dikirimkan ke nomor <b>{{ $no_hp }}</b> (Whatsapp)</p>
-            <div class="row justify-content-center mt-2">
+            <div class="row justify-content-center mt-4">
                 <div class="col-sm-auto">
-                    <a href="{{ route('register.resendOTP', ['nik' => $nik, 'no_hp' => $no_hp]) }}">Kirim Ulang ?</a>  
+                    <span id="kirimUlangHide" class="text-primary1">Kirim Ulang dalam 
+                        <br>
+                        <span id="timer"></span>
+                    </span> 
+                    <a class="btn btn-sm btn-success fs-14" id="kirimUlangShow" href="{{ route('register.resendOTP', ['nik' => $nik, 'no_hp' => $no_hp]) }}">Kirim Ulang ?</a>  
                 </div>
                 <div class="col-sm-auto">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Ganti Nomor</a> 
+                    <a class="btn btn-sm btn-primary fs-14" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Ganti Nomor</a> 
                 </div>
             </div>
         </div>
@@ -108,6 +112,23 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-    // 
+    $('#kirimUlangShow').hide();
+
+    var seconds = 90;
+    function myFunction() {
+        if(seconds < 120) {
+            document.getElementById("timer").innerHTML = seconds+' detik';
+        }
+        if (seconds > 0) {
+            seconds--;
+        } else {
+            $('#kirimUlangShow').show();
+            $('#kirimUlangHide').hide();
+        }
+    }
+
+    window.setInterval(function() {
+        myFunction();
+    }, 1000);
 </script>
 @endpush
