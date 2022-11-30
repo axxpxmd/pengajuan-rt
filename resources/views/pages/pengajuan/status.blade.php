@@ -1,21 +1,18 @@
-@if ($i->status == 0)
-    <span>Surat Belum dikirim</span>
-@endif
 @if ($i->status == 1)
-    <span>Dicek oleh RT</span>
+    <span class="badge bg-warning">Sedang dicek oleh RT</span>
 @endif
 @if ($i->status == 2)
-    <span>Ditolak / Dikembalikan oleh RT</span>
+    <span class="badge bg-danger">Ditolak RT</span>
 @endif
 @if ($i->status == 3)
-    <span>Disetujui oleh RT</span>
+    <span class="badge bg-success">Sudah disetujui RT</span>
 @endif
 @if ($i->status == 4)
-    <span>Dicek oleh RW</span>
+    <span class="badge bg-warning">Sedang dicek oleh RW</span>
 @endif
 @if ($i->status == 5)
-    <span>Ditolak / Dikembalikan oleh RW</span>
+    <span class="badge bg-danger">Ditolak RW</span>
 @endif
 @if ($i->status == 6)
-    <span>Surat Disetujui</span>
+    <span class="badge bg-success">Sudah disetujui RW</span>
 @endif

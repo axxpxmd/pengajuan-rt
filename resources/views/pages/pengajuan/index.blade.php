@@ -39,10 +39,10 @@
                                     <td class="text-center">{{ $key+1 }}</td>
                                     <td>{{ $i->no_surat }}</td>
                                     <td>{{ Carbon\Carbon::createFromFormat('Y-m-d', $i->tgl_pengajuan)->format('d F Y') }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @include('pages.pengajuan.status')
                                     </td>
-                                    <td class="text-center">{{ $i->perihal->count() }}</td>
+                                    <td class="text-center">{{ $i->perihal->count() }} Perihal</td>
                                     <td class="text-center">
                                         <a href="{{ route('pengajuan.cetak', $i->id) }}" target="_blank" class="text-primary1 fs-16"><i class="bi bi-printer"></i></a>
                                     </td>

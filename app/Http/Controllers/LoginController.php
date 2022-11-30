@@ -51,8 +51,12 @@ class LoginController extends Controller
                 ->withInput();
         }
 
-        $data = User::where('nik', $nik)->wherepassword(md5($request->password))->first();
+        $data = User::where('nik', $nik)->wherepassword(md5($password))->first();
         if ($data) {
+            $data->update([
+                'kode' => null
+            ]);
+
             Auth::login($user, $request->remember);
             return redirect(route('profile'));
         } else {
