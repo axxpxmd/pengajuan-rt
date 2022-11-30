@@ -139,6 +139,11 @@ return [
     'sftp_root' => env('SFTP_ROOT'),
     'sftp_src' => env('SFTP_SRC'),
 
+    // WA GATEWAY
+    'wagateway_apikey' => env('WAGATEWAY_APIKEY'),
+    'wagateway_apikey_login' => env('WAGATEWAY_APIKEY_LOGIN'),
+    'wagateway_ipserver' => env('WAGATEWAY_IPSERVER'),
+
     'daerah' => env('DAERAH'),
 
     'providers' => [
