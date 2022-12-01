@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 // Models
@@ -28,6 +29,41 @@ class PengajuanController extends Controller
         return view('pages.pengajuan.create', compact('tgl_pengajuan'));
     }
 
+    public static function generateNoSurat()
+    {
+        $time  = carbon::now();
+        $year  = $time->year;
+
+        $rtrw_id = Auth::user()->anggota->rtrw_id;
+        $rt = Auth::user()->anggota->rtrw->rt;
+        $rw = Auth::user()->anggota->rtrw->rw;
+
+        $dataPengajuan = Pengajuan::join('anggota', 'anggota.nik', '=', 'pengajuans.nik')
+            ->where('anggota.rtrw_id', $rtrw_id)
+            ->where(DB::raw('YEAR(pengajuans.created_at)'), '=', $year)
+            ->orderBy('id', 'DESC')
+            ->count();
+
+        if ($dataPengajuan) {
+            $noUrutSurat = $dataPengajuan + 1;
+        } else {
+            $noUrutSurat = 1;
+        }
+
+        //* no surat terdiri dari 4 digits
+        if (\strlen($noUrutSurat) == 1) {
+            $generateNoSurat = '000' . $noUrutSurat;
+        } elseif (\strlen($noUrutSurat) == 2) {
+            $generateNoSurat = '00' . $noUrutSurat;
+        } elseif (\strlen($noUrutSurat) == 3) {
+            $generateNoSurat = '0' . $noUrutSurat;
+        } elseif (\strlen($noUrutSurat) == 4) {
+            $generateNoSurat = $noUrutSurat;
+        }
+
+        return $generateNoSurat . ' / ' . 'RT ' . $rt . ' / ' . 'RW ' . $rw . ' / ' . $year;
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -48,7 +84,7 @@ class PengajuanController extends Controller
             'tgl_surat' => $request->tgl_surat,
             'tgl_pengajuan' => $request->tgl_pengajuan,
             'status' => 0,
-            'no_surat' => 0
+            'no_surat' => $this->generateNoSurat()
         ];
         $pengajuan = Pengajuan::create($dataPengajuan);
 
@@ -145,15 +181,15 @@ class PengajuanController extends Controller
     {
         $data = Pengajuan::find($id);
 
-         // QR Code RT
-         $file_url = route('validasiRT', $id);
-         $b   = base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->merge(public_path('images/logo-png.png'), 0.2, true)->size(900)->errorCorrection('H')->margin(0)->generate($file_url));
-         $qrRT = '<img width="60" height="61" src="data:image/png;base64, ' . $b . '" alt="qr code" />';
- 
-         // QR Code RW
-         $file_url = route('validasiRW', $id);
-         $b   = base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->merge(public_path('images/logo-png.png'), 0.2, true)->size(900)->errorCorrection('H')->margin(0)->generate($file_url));
-         $qrRW = '<img width="60" height="61" src="data:image/png;base64, ' . $b . '" alt="qr code" />';
+        // QR Code RT
+        $file_url = route('validasiRT', $id);
+        $b   = base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->merge(public_path('images/logo-png.png'), 0.2, true)->size(900)->errorCorrection('H')->margin(0)->generate($file_url));
+        $qrRT = '<img width="60" height="61" src="data:image/png;base64, ' . $b . '" alt="qr code" />';
+
+        // QR Code RW
+        $file_url = route('validasiRW', $id);
+        $b   = base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->merge(public_path('images/logo-png.png'), 0.2, true)->size(900)->errorCorrection('H')->margin(0)->generate($file_url));
+        $qrRW = '<img width="60" height="61" src="data:image/png;base64, ' . $b . '" alt="qr code" />';
 
         $pdf = app('dompdf.wrapper');
         $pdf->getDomPDF()->set_option("enable_php", true);

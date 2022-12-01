@@ -1,3 +1,6 @@
+@if ($i->status == 0)
+    <span class="badge bg-danger">Surat Belum dikirim</span>
+@endif
 @if ($i->status == 1)
     <span class="badge bg-warning">Sedang dicek oleh RT</span>
 @endif
