@@ -44,7 +44,7 @@
                                 <div class="row mb-2">
                                     <label for="keperluan" class="col-sm-4 col-form-label text-end fw-bold">Perihal <span class="text-danger">*</span></label>
                                     <div class="col-sm-7">
-                                        <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal yang disampaikan" class="form-control fs-14" autocomplete="off" required></textarea>
+                                        <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal / Keperluan yang disampaikan" class="form-control fs-14" autocomplete="off" required></textarea>
                                     </div>
                                     <div class="col-sm-1">
                                         <button type="button" class="btn btn-sm btn-primary m-t-12" id="add-pengajuan"><i class="bi bi-plus"></i></button>

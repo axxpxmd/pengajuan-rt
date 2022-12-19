@@ -49,7 +49,7 @@
                                             @endif
                                         </label>
                                         <div class="col-sm-7">
-                                            <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal yang disampaikan" class="form-control fs-14" autocomplete="off" required>{{ $i->perihal }}</textarea>
+                                            <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal / Keperluan yang disampaikan" class="form-control fs-14" autocomplete="off" required>{{ $i->perihal }}</textarea>
                                         </div>
                                         @if($key == 0)
                                         <div class="col-sm-1">
@@ -90,7 +90,7 @@
             <div class="tambahan row mb-2">
                 <label for="keperluan" class="col-sm-4 col-form-label text-end fw-bold"></label>
                 <div class="col-sm-7">
-                    <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal yang disampaikan" class="form-control fs-14" autocomplete="off" required></textarea>
+                    <textarea type="text" name="keperluan[]" id="keperluan" placeholder="Perihal / Keperluan yang disampaikan" class="form-control fs-14" autocomplete="off" required></textarea>
                 </div>
                 <div class="col-sm-1">
                     <button type="button" class="btn btn-sm btn-danger remove-input-field m-t-12"><i class="bi bi-trash-fill"></i></button>

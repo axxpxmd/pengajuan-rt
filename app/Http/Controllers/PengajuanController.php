@@ -16,7 +16,9 @@ class PengajuanController extends Controller
 {
     public function index()
     {
-        $pengajuans = Pengajuan::all();
+        $nik = Auth::user()->nik;
+
+        $pengajuans = Pengajuan::where('nik', $nik)->get();
 
         return view('pages.pengajuan.index', compact('pengajuans'));
     }
