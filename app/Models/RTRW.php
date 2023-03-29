@@ -130,11 +130,17 @@ class RTRW extends Model
 
     public function nKetuaRT()
     {
-        return $this->belongsTo(MappingRT::class, 'ketua_rt', 'id');
+        return $this->belongsTo(MappingRT::class, 'ketua_rt', 'id')->withDefault([
+            'ketua' => '-',
+            'nik' => '-'
+        ]);
     }
 
     public function nKetuaRW()
     {
-        return $this->belongsTo(MappingRW::class, 'ketua_rw', 'id');
+        return $this->belongsTo(MappingRW::class, 'ketua_rw', 'id')->withDefault([
+            'ketua' => '-',
+            'nik' => '-'
+        ]);
     }
 }
