@@ -48,11 +48,11 @@
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <h4 class="font-weight-bold">1. Membuat Akun</h4>
-                                <p>Anda dapat membuat akun terlebih dahulu di halaman ini. <a href="#" class="font-weight-bold">REGISTER</a></p>
+                                <p>Anda dapat membuat akun terlebih dahulu di halaman ini. <a href="{{ route('register') }}" class="font-weight-bold">REGISTER</a></p>
                             </div>
                             <div class="col-md-6 mb-4">
-                                <h4 class="font-weight-bold">2. Aktivasi Akun</h4>
-                                <p>Jika sudah mendaftar, Silahkan tunggu akun kamu diverifikasi. Cek Email secara berkala untuk pemberitahuan.</p>
+                                <h4 class="font-weight-bold">2. Konfirmasi Data Diri</h4>
+                                <p>Setelah mendaftar, cek data diri apakah sudah sesuai, jika belum silahkan lapor pada RT setempat.</p>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <h4 class="font-weight-bold">3. Membuat Pengajuan</h4>

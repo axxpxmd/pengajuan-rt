@@ -22,7 +22,7 @@
             </div>
         </div>
         <hr>
-        <p class="text-center font-weight-bold mb-0">Hak Cipta © 2022 {{ config('app.daerah') }}</p>
+        <p class="text-center font-weight-bold mb-0">Hak Cipta © {{ date('Y') }} {{ config('app.daerah') }}</p>
     </div>
 </footer>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
