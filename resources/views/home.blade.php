@@ -27,13 +27,16 @@
         <div class="row content">
             <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
                 <p class="text-justify lh-2-0">
-                    SIPESAT - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    SIPESAT - Sistem pengajuan RT/RW adalah sebuah sistem yang 
+                    digunakan untuk mempermudah masyarakat dalam mengajukan 
+                    permohonan  kepada ketua RT atau ketua RW di lingkungan tempat 
+                    tinggal mereka. Sistem ini biasanya dilakukan secara online atau 
+                    melalui aplikasi yang dapat diakses oleh seluruh warga.
+                    <br>
+                    Dalam sistem pengajuan RT/RW, setiap warga dapat membuat akun dengan 
+                    mengisi data diri seperti nama, alamat, nomor telepon, dan nomor KTP. 
+                    Setelah akun dibuat, warga dapat memilih jenis pengajuan yang ingin diajukan, 
+                    seperti pengajuan izin usaha, pengajuan KTP baru, pengaduan keamanan lingkungan, dan lain sebagainya.
                 </p>
             </div>
         </div>
